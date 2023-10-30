@@ -1,0 +1,23 @@
+import os
+from pydub import AudioSegment
+
+audio1 = AudioSegment.from_mp3("origin/register.mp3")
+start_time = 60
+clipped_audio = audio1[start_time:]
+
+end_duration = len(clipped_audio) - 140
+final_audio = clipped_audio[:end_duration]
+
+audio2 = AudioSegment.from_mp3("origin/model.mp3")
+# start_time = 60
+clipped_audio2 = audio2[start_time:]
+
+# end_duration = len(clipped_audio) - 120
+# 打开第二个 MP3 文件
+
+# 合并两个音频文件
+combined_audio = final_audio + clipped_audio2
+
+# 保存为输出文件
+output_file = "combined60140.mp3"
+combined_audio.export(output_file, format="mp3")
